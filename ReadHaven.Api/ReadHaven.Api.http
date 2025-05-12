@@ -1,0 +1,6 @@
+@ReadHaven.Api_HostAddress = http://localhost:5098
+
+GET {{ReadHaven.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
