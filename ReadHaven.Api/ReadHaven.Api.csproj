@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ReadHaven.Application\ReadHaven.Application.csproj" />
+    <ProjectReference Include="..\ReadHaven.Identity\ReadHaven.Identity.csproj" />
     <ProjectReference Include="..\ReadHaven.Infrastructure\ReadHaven.Infrastructure.csproj" />
     <ProjectReference Include="..\ReadHaven.Persistence\ReadHaven.Persistence.csproj" />
   </ItemGroup>

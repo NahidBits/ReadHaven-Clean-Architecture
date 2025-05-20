@@ -1,8 +1,8 @@
-﻿using ReadHaven.Application.Contracts.Persistence;
-using ReadHaven.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ReadHaven.Application.Contracts.Persistence;
+using ReadHaven.Persistence.Repositories;
 
 namespace ReadHaven.Persistence;
 
@@ -17,6 +17,6 @@ public static class PersistenceServiceRegistration
 
         services.AddScoped<IBookRepository, BookRepository>();
 
-        return services;    
+        return services;
     }
 }

@@ -1,6 +1,6 @@
-﻿using ReadHaven.Application.Contracts.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using ReadHaven.Application.Contracts.Persistence;
 using ReadHaven.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace ReadHaven.Persistence.Repositories;
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using MediatR;
 using ReadHaven.Application.Contracts.Persistence;
 using ReadHaven.Domain.Entities;
-using MediatR;
 
 namespace ReadHaven.Application.Features.Books.Commands.CreateBook;
 

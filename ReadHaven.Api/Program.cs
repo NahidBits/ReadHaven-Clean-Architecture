@@ -1,4 +1,5 @@
 using ReadHaven.Api.Extensions;
+using ReadHaven.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,21 +8,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 var app = builder.ConfigureServices();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-   // await app.ResetDatabaseAsync();
+    // await app.ResetDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCustomExceptionHandler();
+
+app.UseCors("Open");
 
 app.MapControllers();
 

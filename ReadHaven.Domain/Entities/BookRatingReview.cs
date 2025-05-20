@@ -1,6 +1,6 @@
 ﻿
 using ReadHaven.Domain.Common;
-using ReadHaven.Domain.Enums;   
+using ReadHaven.Domain.Enums;
 
 namespace ReadHaven.Domain.Entities;
 

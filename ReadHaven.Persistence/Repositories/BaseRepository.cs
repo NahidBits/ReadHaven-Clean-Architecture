@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReadHaven.Application.Contracts.Persistence;
-using ReadHaven.Persistence;
 
 namespace ReadHaven.Persistence.Repositories;
 

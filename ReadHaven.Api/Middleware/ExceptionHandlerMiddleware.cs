@@ -1,6 +1,6 @@
-﻿using ReadHaven.Application.Exceptions;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using ReadHaven.Application.Exceptions;
 
 namespace ReadHaven.Api.Middleware;
 
