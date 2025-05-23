@@ -20,10 +20,8 @@ public static class StartupExtensions
         builder.Services.AddInfrastructureServices(builder.Configuration);
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddIdentityServices(builder.Configuration);
-
-        builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
-
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
         builder.Services.AddControllers();
 

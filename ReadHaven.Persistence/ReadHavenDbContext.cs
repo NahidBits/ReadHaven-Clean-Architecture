@@ -10,13 +10,24 @@ namespace ReadHaven.Persistence
         {
         }
         public DbSet<Book> Books { get; set; }
-
+        public DbSet<BookRatingReview> BookReviews { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<OtpRequest> OtpRequests { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Global query filters for soft deletes
             modelBuilder.Entity<Book>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<BookRatingReview>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<CartItem>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<Wishlist>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<OtpRequest>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<Order>().HasQueryFilter(b => !b.IsDeleted);
+            modelBuilder.Entity<PaymentTransaction>().HasQueryFilter(b => !b.IsDeleted);
         }
 
         public override int SaveChanges()

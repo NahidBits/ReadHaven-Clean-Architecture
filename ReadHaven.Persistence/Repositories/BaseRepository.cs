@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using ReadHaven.Application.Contracts.Persistence;
 
 namespace ReadHaven.Persistence.Repositories;
@@ -32,6 +33,11 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : class
                                .ToListAsync();
     }
 
+    public async Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+    }
+
     public async Task<T> AddAsync(T entity)
     {
         await _dbContext.Set<T>().AddAsync(entity);
@@ -44,10 +50,28 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : class
         _dbContext.Entry(entity).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }
-
+    public async Task DeleteByIdAsync(Guid id)
+    {
+        var entity = await GetByIdAsync(id);
+        if (entity != null)
+        {
+            _dbContext.Set<T>().Remove(entity); 
+            await _dbContext.SaveChangesAsync();
+        }
+    }
     public async Task DeleteAsync(T entity)
     {
         _dbContext.Set<T>().Remove(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteRangeAsync(IEnumerable<T> entities)
+    {
+        foreach (var entity in entities)
+        {
+            _dbContext.Set<T>().Remove(entity); 
+        }
+
         await _dbContext.SaveChangesAsync();
     }
 }

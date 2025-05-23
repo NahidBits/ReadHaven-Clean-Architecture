@@ -16,4 +16,8 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
                                     .ToListAsync();
         return books;
     }
+    public async Task<bool> ExistsAsync(Guid bookId)
+    {
+        return await _dbContext.Books.AnyAsync(b => b.Id == bookId);
+    }
 }

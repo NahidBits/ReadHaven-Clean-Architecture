@@ -6,5 +6,6 @@ namespace ReadHaven.Application.Contracts.Identity
     {
         Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request);
         Task<RegistrationResponse> RegisterAsync(RegistrationRequest request);
+        Task<bool> ResetPasswordAsync(PasswordReset request);
     }
 }

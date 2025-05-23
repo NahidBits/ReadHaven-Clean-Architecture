@@ -12,6 +12,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,10 @@
     <ProjectReference Include="..\ReadHaven.Identity\ReadHaven.Identity.csproj" />
     <ProjectReference Include="..\ReadHaven.Infrastructure\ReadHaven.Infrastructure.csproj" />
     <ProjectReference Include="..\ReadHaven.Persistence\ReadHaven.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

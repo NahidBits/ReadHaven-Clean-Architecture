@@ -16,7 +16,11 @@ public static class PersistenceServiceRegistration
         services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
         services.AddScoped<IBookRepository, BookRepository>();
-
+        services.AddScoped<IBookRatingReviewRepository, BookRatingReviewRepository>();
+        services.AddScoped<ICartItemRepository, CartItemRepository>();
+        services.AddScoped<IOtpRepository, OtpRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IPaymentTransactionRepository, PaymentTransactionRepository>();
         return services;
     }
 }

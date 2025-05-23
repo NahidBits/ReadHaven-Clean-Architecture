@@ -16,7 +16,7 @@ namespace ReadHaven.Api.Services
         {
             get
             {
-                return _contextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+                return _contextAccessor.HttpContext?.User?.FindFirst("uid")?.Value ?? string.Empty;
             }
         }
     }

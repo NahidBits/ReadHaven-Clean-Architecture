@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ReadHaven.Application.Common.Interfaces.Security;
 using ReadHaven.Application.Contracts.Identity;
 using ReadHaven.Application.Models.Authentication;
 using ReadHaven.Identity.Models;
@@ -15,14 +16,17 @@ namespace ReadHaven.Identity.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtSettings _jwtSettings;
+        private readonly IJwtService _jwtService;
 
         public AuthenticationService(UserManager<ApplicationUser> userManager,
             IOptions<JwtSettings> jwtSettings,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IJwtService jwtService)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
             _signInManager = signInManager;
+            _jwtService = jwtService;   
         }
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
@@ -91,6 +95,23 @@ namespace ReadHaven.Identity.Services
             {
                 throw new Exception($"Email {request.Email} already exists.");
             }
+        }
+
+        public async Task<bool> ResetPasswordAsync(PasswordReset request)
+        {
+            var principal = _jwtService.GetPrincipalFromToken(request.Token);
+            if (principal == null)
+                return false; 
+
+            var email = principal.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if(user == null)
+                return false;
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, request.NewPassword);
+
+            return resetResult.Succeeded;
         }
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
