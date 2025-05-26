@@ -23,6 +23,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadHaven.Identity", "ReadHaven.Identity\ReadHaven.Identity.csproj", "{98649DB4-5542-48D0-AC5E-8B514F9222EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8CE5739D-3ABE-4DF3-8B41-451E6309F64E}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "readhaven-app", "..\readhaven-app\", "{B3F37E62-EE6A-71C0-882B-114535A41A57}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58265"
+		Debug.AspNetCompiler.PhysicalPath = "..\readhaven-app\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58265\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58265"
+		Release.AspNetCompiler.PhysicalPath = "..\readhaven-app\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58265\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58265"
+		SlnRelativePath = "..\readhaven-app\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +76,10 @@ Global
 		{98649DB4-5542-48D0-AC5E-8B514F9222EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98649DB4-5542-48D0-AC5E-8B514F9222EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98649DB4-5542-48D0-AC5E-8B514F9222EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F37E62-EE6A-71C0-882B-114535A41A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F37E62-EE6A-71C0-882B-114535A41A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F37E62-EE6A-71C0-882B-114535A41A57}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F37E62-EE6A-71C0-882B-114535A41A57}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +94,7 @@ Global
 		{16787B1C-EF5D-409E-952A-4771B411346E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{AF6CE14A-3DD4-4DEC-B6EA-77843320F0C5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{98649DB4-5542-48D0-AC5E-8B514F9222EA} = {AF6CE14A-3DD4-4DEC-B6EA-77843320F0C5}
+		{B3F37E62-EE6A-71C0-882B-114535A41A57} = {8CE5739D-3ABE-4DF3-8B41-451E6309F64E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DE258BB-8E11-4B34-B2B3-969E54407ECC}
