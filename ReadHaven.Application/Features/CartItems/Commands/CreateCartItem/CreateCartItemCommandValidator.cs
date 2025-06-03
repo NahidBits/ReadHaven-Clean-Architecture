@@ -15,9 +15,5 @@ namespace ReadHaven.Application.Features.Cartitems.Commands.CreateCartItem;
             .MustAsync(async (bookId, cancellation) =>
                     await bookRepository.ExistsAsync(bookId))
                 .WithMessage("Book with the specified ID does not exist.");
-
-            RuleFor(x => x.Quantity)
-             .GreaterThan(0).WithMessage("Quantity must be at least 1.")
-             .LessThanOrEqualTo(100).WithMessage("Quantity must not exceed 100.");
     }
     }

@@ -12,6 +12,6 @@ public class PaymentTransaction : BaseEntity
     public PaymentMethod PaymentMethod { get; set; }
     public string TransactionId { get; set; } = $"TXN-{DateTime.UtcNow:yyyyMMddHHmmss}-{new Random().Next(1000, 9999)}";
     public Status Status { get; set; } = Status.Pending;
-    public decimal DiscountAmount { get; set; } = 10;
+    public decimal DisListAmount { get; set; } = 10;
     public decimal TaxAmount { get; set; } = 5;
 }

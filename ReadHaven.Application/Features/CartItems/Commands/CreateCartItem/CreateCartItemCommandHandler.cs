@@ -52,7 +52,7 @@ public class CreateCartItemCommandHandler : IRequestHandler<CreateCartItemComman
 
         if (existingItem != null)
         {
-            existingItem.Quantity += request.Quantity;
+            existingItem.Quantity++;
             existingItem.Price = book.Price * existingItem.Quantity;
 
 
@@ -66,8 +66,8 @@ public class CreateCartItemCommandHandler : IRequestHandler<CreateCartItemComman
                 Id = Guid.NewGuid(),
                 UserId = userId,
                 BookId = request.BookId,
-                Quantity = request.Quantity,
-                Price = book.Price * request.Quantity
+                Quantity = 1,
+                Price = book.Price
             };
 
             var createdCartItem = await _cartItemRepository.AddAsync(newCartItem);

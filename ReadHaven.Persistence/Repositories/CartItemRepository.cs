@@ -20,7 +20,6 @@ public class CartItemRepository : BaseRepository<CartItem>, ICartItemRepository
             .Where(ci => ci.UserId == userId && !ci.IsDeleted)
             .ToListAsync();
     }
-
     public async Task<List<CartItem>> GetSoftDeletedByOrderIdAsync(Guid orderId)
     {
         return await _dbContext.CartItems
@@ -28,7 +27,11 @@ public class CartItemRepository : BaseRepository<CartItem>, ICartItemRepository
             .Where(ci => ci.OrderId == orderId && ci.IsDeleted)
             .ToListAsync();
     }
-
+    public async Task<int> GetCountByUserIdAsync(Guid userId)
+    {
+        return await _dbContext.CartItems
+            .CountAsync(ci => ci.UserId == userId);
+    }
     public async Task<bool> ExistsAsync(Guid userId)
     {
         return await _dbContext.CartItems

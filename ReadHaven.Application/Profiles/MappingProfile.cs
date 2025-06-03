@@ -2,6 +2,7 @@
 using ReadHaven.Application.Features.Books.Commands.CreateBook;
 using ReadHaven.Application.Features.Books.Queries.GetBookDetails;
 using ReadHaven.Application.Features.Books.Queries.GetBooksList;
+using ReadHaven.Application.Features.Books.Queries.GetBooksWithFilters;
 using ReadHaven.Application.Features.BooksRatingReview.Commands.CreateRatingReview;
 using ReadHaven.Application.Features.BooksRatingReview.Queries.GetRatingReviewByBook;
 using ReadHaven.Application.Features.Cartitems.Commands.CreateCartItem;
@@ -33,6 +34,7 @@ namespace ReadHaven.Application.Profiles
             CreateMap<Order, MyOrderListVm>().ReverseMap();
             CreateMap<PaymentTransaction, CreatePaymentTransactionCommand>().ReverseMap();
             CreateMap<PaymentTransaction, CreatePaymentTransactionDto>().ReverseMap();
+            CreateMap<Book,BookDto>().ReverseMap();
         }
     }
 }

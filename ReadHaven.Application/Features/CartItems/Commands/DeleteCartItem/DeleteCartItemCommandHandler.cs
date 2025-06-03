@@ -10,26 +10,35 @@ namespace ReadHaven.Application.Features.Cartitems.Commands.DeleteCartItem;
 public class DeleteCartItemCommandHandler : IRequestHandler<DeleteCartitemCommand, Unit>
 {
     private readonly ICartItemRepository _cartItemRepository;
+    private readonly IAsyncRepository<Order> _orderRepository;  
     private readonly IMapper _mapper;
 
     public DeleteCartItemCommandHandler(
         IMapper mapper,
-        ICartItemRepository cartItemRepository)
+        ICartItemRepository cartItemRepository,
+        IOrderRepository orderRepository)   
     {
         _mapper = mapper;
         _cartItemRepository = cartItemRepository;
+        _orderRepository = orderRepository;
     }
 
     public async Task<Unit> Handle(DeleteCartitemCommand request, CancellationToken cancellationToken)
     {
-        var cartItemToDelete = await _cartItemRepository.GetByUserIdAsync(request.UserId);
+        var cartItemToDelete = await _cartItemRepository.GetByIdAsync(request.CartItemId);
 
         if (cartItemToDelete == null)
         {
-            throw new NotFoundException(nameof(CartItem), request.UserId);
+            throw new NotFoundException(nameof(CartItem), request.CartItemId);
         }
 
-        await _cartItemRepository.DeleteRangeAsync(cartItemToDelete);
+        var order = await _orderRepository.GetByIdAsync(request.CartItemId);
+        if(order != null)
+        {
+            throw new InvalidOperationException("Cannot delete a cart item that is part of an order.");
+        }   
+
+        await _cartItemRepository.DeleteAsync(cartItemToDelete);
         return Unit.Value;
     }
 }

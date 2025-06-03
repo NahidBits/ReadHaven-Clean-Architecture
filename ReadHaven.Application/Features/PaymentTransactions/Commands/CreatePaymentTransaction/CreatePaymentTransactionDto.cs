@@ -11,6 +11,6 @@ public class CreatePaymentTransactionDto
     public PaymentMethod PaymentMethod { get; set; }
     public string TransactionId { get; set; } 
     public Status Status { get; set; }
-    public decimal DiscountAmount { get; set; }
+    public decimal DisListAmount { get; set; }
     public decimal TaxAmount { get; set; }
 }

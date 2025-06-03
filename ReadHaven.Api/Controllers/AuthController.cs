@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ReadHaven.Application.Common.Interfaces.Security;
 using ReadHaven.Application.Contracts.Identity;
 using ReadHaven.Application.Contracts.Infrastructure;
@@ -6,6 +7,7 @@ using ReadHaven.Application.Models.Authentication;
 
 namespace ReadHaven.Api.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("[controller]")]
     public class AuthController : ControllerBase

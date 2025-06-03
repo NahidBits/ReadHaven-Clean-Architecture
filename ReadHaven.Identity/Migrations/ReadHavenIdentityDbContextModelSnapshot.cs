@@ -160,7 +160,7 @@ namespace ReadHaven.Identity.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("AccessFailedCount")
+                    b.Property<int>("AccessFailedList")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")

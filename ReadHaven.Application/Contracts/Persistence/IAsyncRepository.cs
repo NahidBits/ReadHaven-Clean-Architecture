@@ -13,4 +13,5 @@ public interface IAsyncRepository<T> where T : class
     Task DeleteRangeAsync(IEnumerable<T> entities);
     Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
     Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> predicate);
+    IQueryable<T> Query();  
 }

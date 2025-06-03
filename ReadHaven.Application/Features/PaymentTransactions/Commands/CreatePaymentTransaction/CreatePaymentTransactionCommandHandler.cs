@@ -68,7 +68,7 @@ public class CreatePaymentTransactionCommandHandler : IRequestHandler<CreatePaym
             return response;
         }
 
-        decimal totalAmount = cartItems.Sum(ci => ci.Price) * (1 + request.TaxAmount / 100m - request.DiscountAmount / 100m);
+        decimal totalAmount = cartItems.Sum(ci => ci.Price) * (1 + request.TaxAmount / 100m - request.DisListAmount / 100m);
 
         var paymentTransaction = _mapper.Map<PaymentTransaction>(request);
         paymentTransaction.TotalAmount = totalAmount;

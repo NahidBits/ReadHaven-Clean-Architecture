@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using ReadHaven.Application.Features.Books.Commands.CreateBook;
 using ReadHaven.Application.Features.Books.Commands.DeleteBook;
 using ReadHaven.Application.Features.Books.Commands.UpdateBook;
+using ReadHaven.Application.Features.Books.Common;
 using ReadHaven.Application.Features.Books.Queries;
 using ReadHaven.Application.Features.Books.Queries.GetBookDetails;
 using ReadHaven.Application.Features.Books.Queries.GetBooksList;
+using ReadHaven.Application.Features.Books.Queries.GetBooksWithFilters;
 
 
 namespace ReadHaven.Api.Controllers;
@@ -25,7 +27,7 @@ public class BookController : Controller
     }
 
     [AllowAnonymous]
-    [HttpGet("GetAllBooks")]
+    [HttpGet("GetAll")]
     public async Task<ActionResult<List<BookListVm>>> GetAllBooks()
     {
         var dtos = await _mediator.Send(new GetBooksListQuery());
@@ -33,7 +35,7 @@ public class BookController : Controller
     }
 
     [AllowAnonymous]
-    [HttpGet("GetBookDetails/{id}")]
+    [HttpGet("Details/{id}")]
     public async Task<ActionResult<BookDetailsVm>> GetBookDetails(Guid id)
     {
         var query = new GetBookDetailsQuery { BookId = id };
@@ -42,7 +44,7 @@ public class BookController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPost("AddBook")]
+    [HttpPost("Add")]
     public async Task<ActionResult<CreateBookCommandResponse>>  Create([FromForm] CreateBookCommand createBookCommand)
     {
         var response = await _mediator.Send(createBookCommand);
@@ -50,7 +52,7 @@ public class BookController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPut("UpdateBook")]
+    [HttpPut("Update")]
     public async Task<ActionResult> Update([FromForm] UpdateBookCommand updateBookCommand)
     {
         await _mediator.Send(updateBookCommand);
@@ -58,11 +60,20 @@ public class BookController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpDelete("DeleteBook/{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
         var deleteBookCommand = new DeleteBookCommand() { BookId = id };
         await _mediator.Send(deleteBookCommand);
         return NoContent();
+    }
+
+    [AllowAnonymous]
+    [HttpPost("Search")]
+    public async Task<IActionResult> SearchBooks([FromBody] BookQueryParameters parameters)
+    {
+        var query = new GetBooksWithFiltersQuery(parameters);
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 }

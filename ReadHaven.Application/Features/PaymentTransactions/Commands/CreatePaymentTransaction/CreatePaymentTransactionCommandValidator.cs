@@ -13,8 +13,8 @@ namespace ReadHaven.Application.Features.PaymentTransactions.Commands.CreatePaym
             RuleFor(x => x.PaymentMethod)
                 .IsInEnum().WithMessage("Payment method must be a valid enum value.");
 
-            RuleFor(x => x.DiscountAmount)
-                .GreaterThanOrEqualTo(0).WithMessage("Discount amount cannot be negative.");
+            RuleFor(x => x.DisListAmount)
+                .GreaterThanOrEqualTo(0).WithMessage("DisList amount cannot be negative.");
 
             RuleFor(x => x.TaxAmount)
                 .GreaterThanOrEqualTo(0).WithMessage("Tax amount cannot be negative.");
